@@ -1,0 +1,19 @@
+## Next crud prisma postgres typescript
+
+### =========references===========
+-tutorials
+
+### features/actions
+1.  CRUD operations
+
+### technologies used
+1.  next js
+2.  typescript
+3.  prisma
+4.  postgres
+
+### completed tasks
+
+
+### pending tasks
+
