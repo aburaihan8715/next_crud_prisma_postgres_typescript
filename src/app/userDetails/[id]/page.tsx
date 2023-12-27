@@ -1,12 +1,13 @@
-"use client";
+import BackBtn from "@/components/ui/BackBtn";
+import { useSingleUser } from "@/hooks/useSingleUser";
 
-const UserDetails = () => {
+const UserDetails = async ({ params }: { params: { id: number } }) => {
+  const { user } = await useSingleUser(params.id);
   return (
     <div className="shadow-md shadow-white mt-10 text-center p-5 rounded space-y-2">
-      <button className="bg-green-600 py-1 px-2 rounded cursor-pointer">go back</button>
-      <h2 className="text-2xl font-medium uppercase">Abu Raihan</h2>
-      <p className="lowercase">abu@gmail.com</p>
-      <p className="capitalize">35 years</p>
+      <BackBtn />
+      <h2 className="text-2xl font-medium uppercase">{user?.name}</h2>
+      <p className="lowercase">{user?.email}</p>
     </div>
   );
 };

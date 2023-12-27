@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-200;
+  }
+}
+
+/* body {
   background-color: #111;
   color: #eee;
-}
+} */
 
 /* button */
 @layer components {

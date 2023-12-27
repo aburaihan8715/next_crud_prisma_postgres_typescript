@@ -20,9 +20,9 @@ export const GET = async (req: Request, res: NextResponse) => {
 export const PUT = async (req: Request, res: NextResponse) => {
   try {
     const id = Number(req.url.split("users/")[1]);
-    const { name, email, age } = await req.json();
+    const { name, email, password } = await req.json();
     await connectDb();
-    const user = await prisma.user.update({ data: { name, email, age }, where: { id } });
+    const user = await prisma.user.update({ data: { name, email, password }, where: { id } });
     if (!user) return NextResponse.json({ message: "Not Found" }, { status: 404 });
     return NextResponse.json({ message: "Success", user }, { status: 200 });
   } catch (error) {

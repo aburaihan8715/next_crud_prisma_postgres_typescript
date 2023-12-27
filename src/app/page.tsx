@@ -1,34 +1,37 @@
-"use client";
+import UserDeleteBtn from "@/components/user/UserDeleteBtn";
 import Link from "next/link";
 
-export default function Home() {
+async function fetchUsers() {
+  const res = await fetch("http://localhost:3000/api/users", { cache: "no-store" });
+  const data = await res.json();
+  return data.users;
+}
+
+export default async function Home() {
+  const users = await fetchUsers();
+  // console.log(users);
   return (
     <main>
       <ul className="my-6 flex flex-col gap-4">
-        <li className="border py-6 px-4 flex justify-between rounded">
-          <div>
-            <h2 className="text-2xl font-medium uppercase">Abu Raihan</h2>
-            <p className="lowercase">abu@gmail.com</p>
-            <p className="capitalize">35 years</p>
-          </div>
-          <div className="flex gap-2 items-start">
-            <UserDeleteBtn />
-            <Link href={`/updateUser/123`}>
-              <button className="c-btn bg-green-600">update</button>
-            </Link>
+        {users?.map((user: User) => (
+          <li key={user.id} className="border py-6 px-4 flex justify-between rounded">
+            <div>
+              <h2 className="text-2xl font-medium uppercase">{user.name}</h2>
+              <p className="lowercase">{user.email}</p>
+            </div>
+            <div className="flex gap-2 items-start">
+              <UserDeleteBtn id={user.id} />
+              <Link href={`/updateUser/${user.id}`}>
+                <button className="c-btn bg-green-600">update</button>
+              </Link>
 
-            <Link href={`/userDetails/123`}>
-              <button className="c-btn bg-blue-600">details</button>
-            </Link>
-          </div>
-        </li>
+              <Link href={`/userDetails/${user.id}`}>
+                <button className="c-btn bg-blue-600">details</button>
+              </Link>
+            </div>
+          </li>
+        ))}
       </ul>
     </main>
   );
-}
-
-// user delete button component
-
-function UserDeleteBtn() {
-  return <button className="c-btn bg-red-600">delete</button>;
 }
