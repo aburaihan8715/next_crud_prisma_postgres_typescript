@@ -2,18 +2,25 @@
 
 ### =========references===========
 -tutorials
+1. many resources
 
 ### features/actions
 1.  CRUD operations
+2.  go back operation
 
 ### technologies used
 1.  next js
 2.  typescript
 3.  prisma
 4.  postgres
+5.  react hot tost
+6.  react sweet alert
 
 ### completed tasks
+1.  CRUD operations
+2.  go back operation
 
 
 ### pending tasks
+1. deploy somewhere
 
